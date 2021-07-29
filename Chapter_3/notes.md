@@ -45,6 +45,8 @@ $[(S_0,A_0,R_0),(S_1,A_1,R_1),...,(S_T,A_T,R_T)]$
 
 its just one run.
 
+
+
 ![](Episode.svg)
 
 ---
@@ -82,19 +84,19 @@ $$ r(s) = \mathbb{E}_{a,s'}[R_{t+1} | S_t = s] $$
 
 
 ---
-## State-value function $V$
+## State-value function $v$
 
 Given a MDP and a policy $\pi$ on it we define
-* $$ V_{\pi}(s) = \mathbb{E}_\pi [G_t|S_t=s]~~ \forall s \epsilon S $$
-* $$ V_{\pi}(s) = \mathbb{E}_\pi [R_{t+1} + \gamma G_{t+1}|S_t=s]~~ \forall s \epsilon S  $$
+* $$ v_{\pi}(s) = \mathbb{E}_\pi [G_t|S_t=s]~~ \forall s \epsilon S $$
+* $$ v_{\pi}(s) = \mathbb{E}_\pi [R_{t+1} + \gamma G_{t+1}|S_t=s]~~ \forall s \epsilon S  $$
 * $$ v_\pi (s) = \sum_a \pi (a|s) \sum_{s',r} p(s',r|s,a)[r+\gamma v_\pi(s')], ~~ \forall s \epsilon S$$
 
 ---
 ## See inside This equation
 
-$$ v_\pi (s) = \sum_a \pi (a|s) \sum_{s',r} p(s',r|s,a)[r+\gamma v_\pi(s')], ~~ \forall s \epsilon S$$
+$$ v_\pi (s) =\color{blue} \sum_a \pi (a|s) \color{red} \sum_{s',r} p(s',r|s,a) \color{4c9040}[r+\gamma v_\pi(s')], ~~ \color{non} \forall s \epsilon S$$
 
-![]
+![](StateValueFunction.svg)
 
 ---
 ##  Action-value function $Q$
@@ -106,35 +108,69 @@ $$ v_\pi (s) = \sum_a \pi (a|s) \sum_{s',r} p(s',r|s,a)[r+\gamma v_\pi(s')], ~~ 
 ---
 ## See inside This equation
 
- $$ q_\pi(s,a) = \sum_{s',r} p(s',r|s,a) [r+\gamma v_\pi(s')], \forall s\epsilon S, \forall a \epsilon A$$
+ $$ q_\pi(s,\textcolor{blue}{a}) = \color{red}\sum_{s',r} p(s',r|s,a)\color{4c9040} [r+\gamma v_\pi(s')], \color{non} \forall s\epsilon S, \forall a \epsilon A$$
+
+![](ActionValueFunction.svg)
+
+---
+
+## Action-advantage function $A$
 
 
+$$a_\pi (s,a)= q_\pi (s,a) - v_\pi (s) $$
+
+* The advantage function describes how much better it is to take action a instead of following policy $\pi$.
+* It can be nagitive. 
+
+---
+
+## Bellman optimality equations
+
+optimal state-value function
+$$v_*(s) = \max_\pi [ v_\pi(s) ] ~~~~ \forall s \epsilon S$$
+
+![](OptimalStateValueFunction.svg)
+
+---
+### Optimal action-value function.
+$$q_*(s,a) = \max_\pi[q_\pi(s,a)], \forall s \epsilon S, \forall  a \epsilon A$$
+![](ActionValueFunction.svg)
 
 
+---
+## Policy-evaluation 
+
+Given a policy we evaluate value function by iteration.
+$$ v_{k+1}(s)= \sum_a \pi(a|s) \sum_{s',r} p(s',r|s,a) [r+\gamma v_k(s')] $$
+
+when $k\to \infin, v_k \to v_\pi$ 
 
 
+---
+## Policy-improvement equation
+$$\pi ' (s) = \argmax_a \sum_{s',r} p(s',r|s,a)[r+\gamma v_\pi(s')]$$
+![](PolicyImprovement.svg)
 
 
+---
+## Value-iteration equation
+
+$$ v_{k+1}(s)= \max_a \sum_{s',r} p(s',r|s,a) [r+\gamma v_k(s')] $$
+
+---
+## Summary
+* MDP & Markove property
+* Episode & Return $G_t$
+* Reward function $r(s,a)$
+* Policy $\pi(a|s)$
+* State-value function $v_\pi$ and action-value function $q_\pi$
+* Bellman equations. 
+* Value-iteration
 
 
+---
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+## THANKS  <!--- fit --->
 
 
 
