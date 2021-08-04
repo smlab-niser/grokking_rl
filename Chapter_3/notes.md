@@ -43,7 +43,7 @@ Is a sequence :
 
 $[(S_0,A_0,R_0),(S_1,A_1,R_1),...,(S_T,A_T,R_T)]$
 
-its just one run.
+Its just one run.
 
 
 
@@ -52,24 +52,24 @@ its just one run.
 ---
 ## Return
 A given episode $[(S_0,A_0,R_0),(S_1,A_1,R_1),...,(S_T,A_T,R_T)]$ of MDP and a given $\gamma\epsilon[0,1]$.
-$$G_t=R_{t+1} + \gamma R_{t+2} + ... = \sum_{k=0}^{\infin} \gamma^k R_{t+k+1}    $$
+$$G_t=R_{t} + \gamma R_{t+1} + ... = \sum_{k=0}^{\infin} \gamma^k R_{t+k}    $$
 
 or 
-$$ G_t = R_{t+1} + \gamma G_{t+1}$$
+$$ G_t = R_{t} + \gamma G_{t+1}$$
 
 ---
 ## Reward function.
 Given MDP we define reward function. $s ,s'\epsilon S, a\epsilon A$
-$$ r(s) = \mathbb{E}_{a,s'}[R_{t+1} | S_t = s] $$ 
-$$ r(s,a) = \mathbb{E}_{s'}[R_{t+1} | S_t = s, A_t =a ] $$ 
-$$ r(s,a,s') = \mathbb{E}[R_{t+1} | S_t = s, A_t =a,S_{t+1} = s' ] $$ 
+$$ r(s) = \mathbb{E}_{a,s'}[R_{t} | S_t = s] $$ 
+$$ r(s,a) = \mathbb{E}_{s'}[R_{t} | S_t = s, A_t =a ] $$ 
+$$ r(s,a,s') = \mathbb{E}[R_{t} | S_t = s, A_t =a,S_{t+1} = s' ] $$ 
 ---
 
 ![](RewardFunction.svg)
 
 ---
 ## Policy 
-Given a MPD we define
+Given an MPD, we define
 
 $$ \pi(a|s)= \mathbb{P} [A_t = a | S_t = s] $$
 
@@ -78,18 +78,23 @@ $$ \pi(a|s)= \mathbb{P} [A_t = a | S_t = s] $$
 ---
 ![](RewardFunctionWithPolicy.svg)
 
-Now we acn talk about: 
-$$ r(s) = \mathbb{E}_{a,s'}[R_{t+1} | S_t = s] $$ 
+Now we can talk about: 
+$$ r(s) = \mathbb{E}_{a,s'}[R_{t} | S_t = s] $$ 
 
 
 
 ---
 ## State-value function $v$
 
-Given a MDP and a policy $\pi$ on it we define
-* $$ v_{\pi}(s) = \mathbb{E}_\pi [G_t|S_t=s]~~ \forall s \epsilon S $$
-* $$ v_{\pi}(s) = \mathbb{E}_\pi [R_{t+1} + \gamma G_{t+1}|S_t=s]~~ \forall s \epsilon S  $$
-* $$ v_\pi (s) = \sum_a \pi (a|s) \sum_{s',r} p(s',r|s,a)[r+\gamma v_\pi(s')], ~~ \forall s \epsilon S$$
+Given a MDP and a policy $\pi$ on it we define $\forall s \epsilon S$
+* $$ \begin{split} v_\pi (s) &= \mathbb{E}_\pi [G_t|S_t=s] \\ & = \mathbb{E}_\pi[R_t + \gamma R_{t+1} +\gamma^2R_{t+2} + ... | S_t = s]\\& = \mathbb{E}_\pi[R_t + \gamma ( R_{t+1} +\gamma R_{t+2} + ...) | S_t = s]\\ & = \mathbb{E}_\pi [R_{t} + \gamma G_{t+1}|S_t=s]\end{split} $$
+
+---
+
+* $$ \begin{split} v_\pi (s) & = \sum_a \pi (a|s) \sum_{s',r} p(s',r|s,a)[r+\gamma v_\pi(s')], ~~ \forall s \epsilon S \\ &   \end{split} $$
+
+
+
 
 ---
 ## See inside This equation
@@ -119,8 +124,8 @@ $$ v_\pi (s) =\color{blue} \sum_a \pi (a|s) \color{red} \sum_{s',r} p(s',r|s,a) 
 
 $$a_\pi (s,a)= q_\pi (s,a) - v_\pi (s) $$
 
-* The advantage function describes how much better it is to take action a instead of following policy $\pi$.
-* It can be nagitive. 
+* The advantage function describes how much better it is to take an action instead of following policy $\pi$.
+* It can be negative. 
 
 ---
 
