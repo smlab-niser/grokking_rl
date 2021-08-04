@@ -1,0 +1,21 @@
+{
+    "grammarly.overrides": [
+        {
+            "files": [
+                "**/Chapter_3/notes.md"
+            ],
+            "config": {
+                "audience": "expert",
+                "dialect": "american",
+                "domain": "academic",
+                "emotions": [
+                    "confident",
+                    "analytical"
+                ],
+                "goals": [
+                    "describe"
+                ]
+            }
+        }
+    ]
+}
