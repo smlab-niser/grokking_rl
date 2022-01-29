@@ -37,7 +37,6 @@ For each $E_n$ for each $S_t^n$.
 1. $\color{#405198}N_{n+1}(S_t^n) = N_{n}(S_t^n) + 1$ for rest $\color{#a23131}N_{n+1}(s) = N_{n}(s)$
 2. $\color{#405198}V_{n+1}(S_t) = V_{n}(S_t)+\frac{G_{t:T}^n -V_n(S_t)}{N_n(S_t)}$ for rest $\color{#a23131}V_{n+1}(s)= V_n(s)$ 
 
-
 or 
 
 2. $\color{#405198}V_{n+1}(S_t) = V_{n}(S_t)+\textcolor{green}{\alpha}({G_{t:T}^n -V_n(S_t)})$ 
@@ -120,7 +119,7 @@ $$V_{n+1}(S_t) = V_{n}(S_t)+{\alpha}(\underbrace{\overbrace{\textcolor{red}{G_{t
 
 1. Set $e_0(s)=0 ~ \forall s \epsilon \mathbb{S}$ every new episode.
 2. When we encounter a state $s$.   $e_t(s) = e_{t-1}(s)+1$ 
-3.  $\delta_{t:t+1}^{\text{TD}}= R_{t+1} + \gamma V_t(S_{t+1}) -V_t(S_t)$
+3.  $\delta_{t:t+1}^{\text{TD}} := R_{t+1} + \gamma V_t(S_{t+1}) -V_t(S_t)$
 4.  $V_{t+1} = V_t +\alpha\delta_{t:t+1}^{\text{TD}}e_t$
 5.  $e_{t+1} = e_t \gamma \lambda$
 
